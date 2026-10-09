@@ -1,0 +1,7 @@
+from flask import flask,redirect, url_for, rendrer_template
+app = Flask(__name__)
+@app.route('/') 
+def home():
+    return render_template('index.html')  # Render the index.html template
+if __name__ == '__main__':
+    app.run(debug=True)  # Run the Flask app in debug mode
