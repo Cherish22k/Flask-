@@ -1,0 +1,35 @@
+from flask import Flask , render_template, request
+app=Flask(__name__)
+@app.route('/')
+def index():
+    if 'username'in session:
+        username = session['username']
+        return 'Logged in as ' & plus; username & plus; '<br>' & plus; "<b><a href = '/logout'>click here to log out</a></b>"
+    return render_template('index.html')
+</b>
+return @app.route('/login', methods=['POST']
+def login():
+    if request.method == 'POST':
+        session['username'] = request.form['nm']
+        return redirect(url_for('index'))   
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index')) 
+@app.route('/getsession')
+def getsession():
+    if 'username' in session:
+        username = session['username']
+        return 'Logged in as ' + username + '<br>' + "<b><a href = '/logout'>click here to log out</a></b>"
+    return "You are not logged in <br><a href = '/'>click here to log in</a>"
+@app.route('/setcookie', methods=['POST'])
+def setcookie():
+    if request.method == 'POST':
+        user = request.form['nm']
+        resp = make_response(render_template('index.html'))
+        resp.set_cookie('userID', user)
+        return resp
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
